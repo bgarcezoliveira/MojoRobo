@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>f9594973-6326-4d3d-981e-a57c161eb786</ProjectGuid>
+    <ProjectGuid>3fe6fc7f-1122-4ce0-ba03-64a28ed9c092</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MojoRobo.BL</RootNamespace>
-    <AssemblyName>MojoRobo.BL</AssemblyName>
+    <RootNamespace>MojoRobo.Common</RootNamespace>
+    <AssemblyName>MojoRobo.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

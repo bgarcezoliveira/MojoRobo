@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MojoRobo.Core")]
+[assembly: AssemblyTitle("MojoRobo.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MojoRobo.Core")]
+[assembly: AssemblyProduct("MojoRobo.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("dd5e1f34-6ea9-45fc-98bf-e773ce136666")]
+[assembly: Guid("3fe6fc7f-1122-4ce0-ba03-64a28ed9c092")]
 
 // Version information for an assembly consists of the following four values:
 //

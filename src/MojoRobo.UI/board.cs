@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MojoRobo.BL
+namespace MojoRobo.UI
 {
-    public partial class Form1 : Form
+    public partial class Board : Form
     {
-        public Form1()
+        public Board()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
