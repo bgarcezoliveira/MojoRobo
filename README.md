@@ -1,2 +1,2 @@
-# MojoRobo
+# MojoRobo 🤖
 Toy Robot Simulator
