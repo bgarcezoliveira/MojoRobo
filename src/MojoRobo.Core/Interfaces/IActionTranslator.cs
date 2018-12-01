@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MojoRobo.Core
+namespace MojoRobo.Core.Interfaces
 {
-    public class Class1
+    public interface IActionTranslator
     {
     }
 }

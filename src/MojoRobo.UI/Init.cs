@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MojoRobo.Core;
+using MojoRobo.Core.Interfaces;
+using System;
 using System.Windows.Forms;
+using Unity;
+using Unity.Lifetime;
 
 namespace MojoRobo.UI
 {
@@ -16,7 +17,20 @@ namespace MojoRobo.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Board());
+            var unityContainer = BuildContainer();
+            Application.Run(unityContainer.Resolve<Form>());
+        }
+
+        static IUnityContainer BuildContainer()
+        {
+            var container = new UnityContainer();
+            container.RegisterType<Form, Board>(new HierarchicalLifetimeManager());
+            container.RegisterType<IActionsManager, ActionsManager>(new HierarchicalLifetimeManager());
+            container.RegisterType<IActionsValidationManager, ActionsValidationManager>(new HierarchicalLifetimeManager());
+            container.RegisterType<IBoardStatus, BoardStatus>(new PerResolveLifetimeManager());
+            container.RegisterType<IRobotStatus, RobotStatus>(new PerResolveLifetimeManager());
+            container.RegisterType<IUIManager, UIManager>(new HierarchicalLifetimeManager());
+            return container;
         }
     }
 }
