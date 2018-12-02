@@ -93,7 +93,7 @@ namespace MojoRobo.Core
             }
             else if (!char.TryParse(F, out char f))
             {
-                errorList.Add("F is invalid. Please provide an char value");
+                errorList.Add("F is invalid. Please provide a char value");
             }
             else if (!typeof(Directions)
                         .GetEnumValues()
