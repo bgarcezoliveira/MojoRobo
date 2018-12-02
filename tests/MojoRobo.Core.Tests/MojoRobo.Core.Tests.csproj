@@ -38,21 +38,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="MojoRobo.Common.Fakes">
+      <HintPath>FakesAssemblies\MojoRobo.Common.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="MojoRobo.Core.Fakes">
+      <HintPath>FakesAssemblies\MojoRobo.Core.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionsManagerTests.cs" />
+    <Compile Include="Fixtures\ActionsManagerFixture.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Fakes Include="Fakes\MojoRobo.Core.fakes" />
+    <Fakes Include="Fakes\MojoRobo.Common.fakes" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MojoRobo.Common\MojoRobo.Common.csproj">
+      <Project>{3fe6fc7f-1122-4ce0-ba03-64a28ed9c092}</Project>
+      <Name>MojoRobo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\MojoRobo.Core\MojoRobo.Core.csproj">
+      <Project>{dd5e1f34-6ea9-45fc-98bf-e773ce136666}</Project>
+      <Name>MojoRobo.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

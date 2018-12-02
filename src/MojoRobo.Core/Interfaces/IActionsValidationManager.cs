@@ -5,7 +5,8 @@ namespace MojoRobo.Core.Interfaces
 {
     public interface IActionsValidationManager
     {
-        IEnumerable<string> ValidatePlaceInput(string X, string Y, string F);
-        bool ValidateActions(IEnumerable<BoardAction> actions);
+        IEnumerable<string> ValidatePlaceInput(string XBlock, string YBlock, string F);
+        void ValidateActions(IEnumerable<BoardAction> actions);
+        void ValidateAction(BoardAction action);
     }
 }

@@ -2,12 +2,13 @@
 
 namespace MojoRobo.Core.Interfaces
 {
-    public interface IUIManager
+    public interface IUIBoardManager
     {
-        void DrawGrid(Panel panel);
-        void Place(string X, string Y, string F);
+        void DrawGrid();
+        void Place(string XBlock, string YBlock, string F);
         void Left();
         void Right();
         void Move();
+        void Execute();
     }
 }

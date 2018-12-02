@@ -31,8 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +45,15 @@
   <ItemGroup>
     <Compile Include="Enums\CommandTypes.cs" />
     <Compile Include="Enums\Directions.cs" />
+    <Compile Include="Enums\InternalDirections.cs" />
+    <Compile Include="Interfaces\IBoardStatus.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IRobotStatus.cs" />
     <Compile Include="Models\BoardAction.cs" />
     <Compile Include="Models\Boundary.cs" />
     <Compile Include="Models\BoardPosition.cs" />
-    <Compile Include="Constants\UIGlobals.cs" />
+    <Compile Include="Constants\Globals.cs" />
+    <Compile Include="Models\Dimension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

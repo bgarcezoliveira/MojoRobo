@@ -1,10 +1,8 @@
-﻿using MojoRobo.Core.Interfaces;
-using MojoRobo.Common.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MojoRobo.Core.Interfaces;
+using MojoRobo.Common.Models;
+using MojoRobo.Common.Interfaces;
 
 namespace MojoRobo.Core
 {
@@ -12,13 +10,16 @@ namespace MojoRobo.Core
     {
         #region Properties
         IActionsValidationManager ActionsValidationManager { get; set; }
-        private List<BoardAction> Actions { get; set; }
+        ILogger Logger { get; set; }
+        public List<BoardAction> Actions { get; set; }
         #endregion
 
         #region Constructor
-        public ActionsManager(IActionsValidationManager actionValidationManager)
+        public ActionsManager(IActionsValidationManager actionValidationManager,
+                                ILogger logger)
         {
             ActionsValidationManager = actionValidationManager ?? throw new ArgumentNullException(nameof(actionValidationManager));
+            Logger = logger ?? throw new ArgumentNullException(nameof(logger));
             Actions = new List<BoardAction>();
         }
         #endregion
@@ -26,6 +27,7 @@ namespace MojoRobo.Core
         #region Interface
         public void RegisterAction(BoardAction action)
         {
+            Logger.LogRegisterAction(action);
             Actions.Add(action);
         }
 
@@ -33,13 +35,17 @@ namespace MojoRobo.Core
         {
             Actions.Clear();
         }
-        #endregion
 
-        #region Private
-        private bool ValidateActions()
+        public IEnumerable<BoardAction> GetActions(bool validate = true)
         {
-            return ActionsValidationManager.ValidateActions(Actions);
+            if (validate)
+            {
+                ActionsValidationManager.ValidateActions(Actions);
+            }
+
+            return Actions;
         }
         #endregion
+        
     }
 }

@@ -45,6 +45,7 @@
             this.LogTextBox = new System.Windows.Forms.TextBox();
             this.BoardPanel = new System.Windows.Forms.Panel();
             this.RoboPanel = new System.Windows.Forms.Panel();
+            this.ClearLogsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.BoardPanel.SuspendLayout();
@@ -82,6 +83,7 @@
             this.ReportButton.TabIndex = 4;
             this.ReportButton.Text = "Report";
             this.ReportButton.UseVisualStyleBackColor = true;
+            this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
             // ExecuteButton
             // 
@@ -92,6 +94,7 @@
             this.ExecuteButton.TabIndex = 4;
             this.ExecuteButton.Text = "Execute";
             this.ExecuteButton.UseVisualStyleBackColor = true;
+            this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 
             // label3
             // 
@@ -188,7 +191,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Corbel", 10F);
             this.groupBox2.Location = new System.Drawing.Point(13, 250);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(569, 168);
+            this.groupBox2.Size = new System.Drawing.Size(569, 149);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Logs";
@@ -197,12 +200,12 @@
             // 
             this.LogTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LogTextBox.Enabled = false;
-            this.LogTextBox.Location = new System.Drawing.Point(7, 24);
+            this.LogTextBox.Location = new System.Drawing.Point(6, 23);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
             this.LogTextBox.ReadOnly = true;
-            this.LogTextBox.Size = new System.Drawing.Size(556, 138);
+            this.LogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.LogTextBox.Size = new System.Drawing.Size(556, 120);
             this.LogTextBox.TabIndex = 0;
             // 
             // BoardPanel
@@ -220,7 +223,7 @@
             // RoboPanel
             // 
             this.RoboPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RoboPanel.BackColor = System.Drawing.SystemColors.Desktop;
+            this.RoboPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.RoboPanel.Location = new System.Drawing.Point(3, 194);
             this.RoboPanel.Margin = new System.Windows.Forms.Padding(0);
             this.RoboPanel.Name = "RoboPanel";
@@ -228,11 +231,22 @@
             this.RoboPanel.TabIndex = 3;
             this.RoboPanel.Visible = false;
             // 
+            // ClearLogsButton
+            // 
+            this.ClearLogsButton.Location = new System.Drawing.Point(522, 402);
+            this.ClearLogsButton.Name = "ClearLogsButton";
+            this.ClearLogsButton.Size = new System.Drawing.Size(60, 23);
+            this.ClearLogsButton.TabIndex = 3;
+            this.ClearLogsButton.Text = "Clear";
+            this.ClearLogsButton.UseVisualStyleBackColor = true;
+            this.ClearLogsButton.Click += new System.EventHandler(this.ClearLogsButton_Click);
+            // 
             // Board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 571);
+            this.Controls.Add(this.ClearLogsButton);
             this.Controls.Add(this.BoardPanel);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -269,6 +283,7 @@
         private System.Windows.Forms.TextBox LogTextBox;
         private System.Windows.Forms.Panel BoardPanel;
         private System.Windows.Forms.Panel RoboPanel;
+        private System.Windows.Forms.Button ClearLogsButton;
     }
 }
 

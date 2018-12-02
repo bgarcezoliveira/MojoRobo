@@ -1,6 +1,11 @@
-﻿using MojoRobo.Core.Interfaces;
+﻿using MojoRobo.Common.Interfaces;
 using System;
 using System.Windows.Forms;
+using MojoRobo.Core.Interfaces;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Reflection;
+using System.IO;
 
 namespace MojoRobo.UI
 {
@@ -9,25 +14,35 @@ namespace MojoRobo.UI
         private IBoardStatus BoardStatus { get; set; }
         private IRobotStatus RobotStatus { get; set; }
         private IActionsManager ActionManager { get; set; }
-        private IUIManager UIManager { get; set; }
+        private IUIBoardManager UIManager { get; set; }
+        private ILogger Logger { get; set; }
 
         public Board(IBoardStatus boardStatus,
                     IRobotStatus robotStatus,
                     IActionsManager actionManager,
-                    IUIManager uiManager)
+                    IUIBoardManager uiManager,
+                    ILogger logger)
         {
             BoardStatus = boardStatus ?? throw new ArgumentNullException(nameof(boardStatus));
             RobotStatus = robotStatus ?? throw new ArgumentNullException(nameof(robotStatus));
             ActionManager = actionManager ?? throw new ArgumentNullException(nameof(actionManager));
             UIManager = uiManager ?? throw new ArgumentNullException(nameof(uiManager));
+            Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             InitializeComponent();
 
             BoardStatus.Update(boardPanelWidth: BoardPanel.Width,
                                 boardPanelHeight: BoardPanel.Height,
-                                roboPanelWidth: RoboPanel.Width);
+                                roboPanelWidth: RoboPanel.Width,
+                                boardPanel: BoardPanel);
 
-            RobotStatus.Update(isPlaced: false);
+            List<Bitmap> imgs = GetImageResources();
+
+            RobotStatus.Update(isPlaced: false, 
+                                robotPanel: RoboPanel,
+                                imgs: imgs);
+
+            Logger.Update(logTextBox: LogTextBox);
         }
 
         #region UI Event Handlers
@@ -35,7 +50,7 @@ namespace MojoRobo.UI
         #region Draw
         private void BoardPanel_Paint(object sender, PaintEventArgs e)
         {
-            UIManager.DrawGrid(panel: BoardPanel);
+            UIManager.DrawGrid();
         }
         #endregion
 
@@ -57,46 +72,49 @@ namespace MojoRobo.UI
 
         private void PlaceButton_Click(object sender, EventArgs e)
         {
-            UIManager.Place(X: XPlaceTextBox.Text,
-                            Y: YPlaceTextBox.Text,
+            UIManager.Place(XBlock: XPlaceTextBox.Text,
+                            YBlock: YPlaceTextBox.Text,
                             F: FPlaceTextBox.Text);
+        }
+
+        private void ExecuteButton_Click(object sender, EventArgs e)
+        {
+            UIManager.Execute();
         }
         #endregion
 
+        #region Logger
+        private void ClearLogsButton_Click(object sender, EventArgs e)
+        {
+            Logger.Clear();
+        }
+
+        private void ReportButton_Click(object sender, EventArgs e)
+        {
+            Logger.Log(RobotStatus.Report());
+        }
         #endregion
 
-        //TODO: keep logic around - robo initially starts unpositioned
-        //private void InitRoboPanelPosition()
-        //{
-        //    var ybottom = BoardPanel.Height - RoboPanel.Height - Offset;
-        //    RoboPanel.Location = new Point(Offset, ybottom);
-        //}
+        private List<Bitmap> GetImageResources()
+        {
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream myStream1 = myAssembly.GetManifestResourceStream("MojoRobo.UI.Images.east.png");
+            Bitmap bmp1 = new Bitmap(myStream1);
 
-        //TODO: button events should raise actions in action manager
-        //private void RightButton_Click(object sender, EventArgs e)
-        //{
-        //    var x = RoboPanel.Location.X + BlockSize;
-        //    var currY = RoboPanel.Location.Y;
-        //    if (CanMove(x, currY))
-        //    {
-        //        RoboPanel.Location = new Point(x, currY);
-        //    }
-        //}
+            Stream myStream2 = myAssembly.GetManifestResourceStream("MojoRobo.UI.Images.north.png");
+            Bitmap bmp2 = new Bitmap(myStream2);
 
-        //private void LeftButton_Click(object sender, EventArgs e)
-        //{
-        //    var x = RoboPanel.Location.X - BlockSize;
-        //    var currY = RoboPanel.Location.Y;
-        //    if (CanMove(x, currY))
-        //    {
-        //        RoboPanel.Location = new Point(x, currY);
-        //    }
-        //}
+            Stream myStream3 = myAssembly.GetManifestResourceStream("MojoRobo.UI.Images.south.png");
+            Bitmap bmp3 = new Bitmap(myStream3);
 
-        //private bool CanMove(int x, int y)
-        //{
-        //    return (x >= XBoundaries.Min && x <= XBoundaries.Max) &&
-        //           (y >= YBoundaries.Min && y <= YBoundaries.Max);
-        //}
+            Stream myStream4 = myAssembly.GetManifestResourceStream("MojoRobo.UI.Images.west.png");
+            Bitmap bmp4 = new Bitmap(myStream4);
+
+            return new List<Bitmap>() { bmp1, bmp2, bmp3, bmp4 };
+        }
+
+        #endregion
+
+        
     }
 }

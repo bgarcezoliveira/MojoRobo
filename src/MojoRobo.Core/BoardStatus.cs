@@ -1,11 +1,7 @@
 ﻿using MojoRobo.Common.Constants;
+using MojoRobo.Common.Interfaces;
 using MojoRobo.Common.Models;
-using MojoRobo.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MojoRobo.Core
 {
@@ -16,6 +12,9 @@ namespace MojoRobo.Core
         private int Offset { get; set; }
         private Boundary XBoundaries { get; set; }
         private Boundary YBoundaries { get; set; }
+        private Dimension BoardDimension { get; set; }
+        private Dimension RobotDimension { get; set; }
+        private Panel BoardPanel { get; set; }
         #endregion
 
         #region Constructor
@@ -26,12 +25,18 @@ namespace MojoRobo.Core
         #endregion
 
         #region Interface
-        public void Update(int boardPanelWidth, int boardPanelHeight, int roboPanelWidth)
+        public void Update(int boardPanelWidth, 
+                            int boardPanelHeight, 
+                            int roboPanelWidth, 
+                            Panel boardPanel)
         {
-            BlockSize = boardPanelWidth / UIGlobals.BlockCount;
+            BlockSize = boardPanelWidth / Globals.BlockCount;
             Offset = (BlockSize / 2) - (roboPanelWidth / 2);
             XBoundaries = new Boundary() { Min = 0, Max = boardPanelWidth };
             YBoundaries = new Boundary() { Min = 0, Max = boardPanelHeight };
+            BoardDimension = new Dimension() { Width = boardPanelWidth, Height = boardPanelHeight };
+            RobotDimension = new Dimension() { Width = roboPanelWidth, Height = roboPanelWidth };
+            BoardPanel = boardPanel;
         }
 
         public int GetBlockSize()
@@ -52,6 +57,21 @@ namespace MojoRobo.Core
         public Boundary GetYBoundaries()
         {
             return YBoundaries;
+        }
+
+        public Dimension GetBoardDimension()
+        {
+            return BoardDimension;
+        }
+
+        public Dimension GetRobotDimension()
+        {
+            return RobotDimension;
+        }
+
+        public Panel GetBoardPanel()
+        {
+            return BoardPanel;
         }
         #endregion
     }

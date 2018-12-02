@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MojoRobo.BL
+namespace MojoRobo.Core.Interfaces
 {
-    public class Class1
+    public interface IUIRobotManager
     {
+        void Update(bool visible = true);
     }
 }

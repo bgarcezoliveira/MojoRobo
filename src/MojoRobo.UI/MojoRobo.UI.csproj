@@ -110,6 +110,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MojoRobo.BL\MojoRobo.BL.csproj">
+      <Project>{F9594973-6326-4D3D-981E-A57C161EB786}</Project>
+      <Name>MojoRobo.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MojoRobo.Common\MojoRobo.Common.csproj">
       <Project>{3fe6fc7f-1122-4ce0-ba03-64a28ed9c092}</Project>
       <Name>MojoRobo.Common</Name>
@@ -118,6 +122,12 @@
       <Project>{DD5E1F34-6EA9-45FC-98BF-E773CE136666}</Project>
       <Name>MojoRobo.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\east.png" />
+    <EmbeddedResource Include="Images\north.png" />
+    <EmbeddedResource Include="Images\south.png" />
+    <EmbeddedResource Include="Images\west.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

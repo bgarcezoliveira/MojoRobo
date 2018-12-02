@@ -42,20 +42,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionsExecutionManager.cs" />
     <Compile Include="ActionsManager.cs" />
+    <Compile Include="ActionsTranslator.cs" />
     <Compile Include="ActionsValidationManager.cs" />
     <Compile Include="BoardStatus.cs" />
+    <Compile Include="Interfaces\IActionsExecutionManager.cs" />
     <Compile Include="Interfaces\IActionsManager.cs" />
     <Compile Include="Interfaces\IActionsValidationManager.cs" />
-    <Compile Include="Interfaces\IActionTranslator.cs" />
-    <Compile Include="Interfaces\IBoardStatus.cs" />
-    <Compile Include="Interfaces\IRobotStatus.cs" />
-    <Compile Include="Interfaces\IUIManager.cs" />
+    <Compile Include="Interfaces\IActionsTranslator.cs" />
+    <Compile Include="Interfaces\IUIBoardManager.cs" />
+    <Compile Include="Interfaces\IUIRobotManager.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="RobotStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIManager.cs" />
+    <Compile Include="UIBoardManager.cs" />
+    <Compile Include="UIRobotManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MojoRobo.BL\MojoRobo.BL.csproj">
+      <Project>{F9594973-6326-4D3D-981E-A57C161EB786}</Project>
+      <Name>MojoRobo.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MojoRobo.Common\MojoRobo.Common.csproj">
       <Project>{3fe6fc7f-1122-4ce0-ba03-64a28ed9c092}</Project>
       <Name>MojoRobo.Common</Name>
