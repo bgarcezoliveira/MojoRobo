@@ -35,6 +35,7 @@ namespace MojoRobo.BL
                 char[] sequence = GetDirectionSequence(RobotStatus.GetDirectionOrigin());
                 char currDirection = (char)position.Direction;
                 int currIndex = sequence.ToList().IndexOf(currDirection);
+                currIndex = currIndex < 0 ? Globals.DirectionsSequenceOrigin : currIndex;
                 int nextIndex = currIndex - 1;
                 nextIndex = nextIndex < 0 ? Globals.DirectionsSequenceOrigin : nextIndex;
                 char nextDirection = sequence[nextIndex];
@@ -70,6 +71,9 @@ namespace MojoRobo.BL
                         pos.Y = boardHeight - (YBlock * blockSize) + offset;
                         break;
                 }
+
+                Directions dir = (Directions)Enum.Parse(typeof(Directions), GetDirectionName(position.Direction));
+                RobotStatus.SetDirectionOrigin((char)dir);
             }
             return pos;
         }
@@ -103,6 +107,7 @@ namespace MojoRobo.BL
                 char[] sequence = GetDirectionSequence(RobotStatus.GetDirectionOrigin());
                 char currDirection = (char)position.Direction;
                 int currIndex = sequence.ToList().IndexOf(currDirection);
+                currIndex = currIndex < 0 ? Globals.DirectionsSequenceOrigin : currIndex;
                 int nextIndex = currIndex + 1;
                 nextIndex = nextIndex == sequence.Length ? Globals.DirectionsSequenceOrigin : nextIndex;
                 char nextDirection = sequence[nextIndex];
